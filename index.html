@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breno Alcântara — Tatuador Profissional · Porto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:    #0a0808;
+    --ink:      #111010;
+    --smoke:    #1a1818;
+    --ash:      #2a2727;
+    --gold:     #b8963e;
+    --gold-lt:  #d4ae60;
+    --gold-dim: #7a6028;
+    --cream:    #e8dfc8;
+    --white:    #f5f0e8;
+    --grey:     #6a6460;
+    --line:     rgba(184,150,62,0.25);
+
+    --display: 'Playfair Display', serif;
+    --serif:   'Cormorant Garamond', serif;
+    --sans:    'Rajdhani', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--serif);
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 48px;
+    background: linear-gradient(to bottom, rgba(10,8,8,0.95) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold-lt); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 48px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 60% 30%, rgba(184,150,62,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 100% 80% at 50% 0%, rgba(26,24,24,0.4) 0%, var(--black) 75%);
+  }
+
+  /* Decorative large initial */
+  .hero-giant-letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-family: var(--display);
+    font-size: clamp(280px, 45vw, 580px);
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(184,150,62,0.07);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: var(--display);
+    font-size: clamp(60px, 10vw, 130px);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--gold);
+    font-style: italic;
+    font-size: 0.62em;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-tagline {
+    margin-top: 28px;
+    font-family: var(--serif);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--grey);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  .hero-tagline em {
+    color: var(--cream);
+    font-style: normal;
+  }
+
+  .hero-cta-row {
+    margin-top: 42px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 16px 38px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-lt);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    padding: 15px 38px;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold-lt);
+  }
+
+  .hero-years {
+    position: absolute;
+    top: 50%;
+    right: 48px;
+    transform: translateY(-50%);
+    z-index: 2;
+    text-align: right;
+  }
+
+  .hero-years-num {
+    font-family: var(--display);
+    font-size: clamp(80px, 12vw, 160px);
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--gold-dim);
+  }
+
+  .hero-years-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 4px;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 48px;
+    margin: 20px 0;
+    opacity: 0.5;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .divider-icon {
+    color: var(--gold-dim);
+    font-size: 1rem;
+  }
+
+  /* ─── SPECIALITIES ─── */
+  .specialities {
+    padding: 100px 48px;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 0 0 60px;
+    height: 1px;
+    background: var(--gold-dim);
+  }
+
+  .specialities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .spec-card {
+    background: var(--smoke);
+    padding: 52px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+    cursor: default;
+  }
+
+  .spec-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .spec-card:hover { background: var(--ash); }
+  .spec-card:hover::before { transform: scaleX(1); }
+
+  .spec-icon {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    display: block;
+    color: var(--gold-dim);
+    transition: color 0.3s;
+  }
+
+  .spec-card:hover .spec-icon { color: var(--gold); }
+
+  .spec-name {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .spec-desc {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 1.7;
+  }
+
+  /* ─── ABOUT ─── */
+  .about {
+    padding: 100px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    border-top: 1px solid var(--line);
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--smoke);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative corner marks */
+  .about-frame::before,
+  .about-frame::after {
+    content: '';
+    position: absolute;
+    width: 40px; height: 40px;
+    border-color: var(--gold-dim);
+    border-style: solid;
+    z-index: 2;
+  }
+  .about-frame::before { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+  .about-frame::after  { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
+
+  .about-frame-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about-frame-letter {
+    font-family: var(--display);
+    font-size: 200px;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(184,150,62,0.15);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .about-frame-sub {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  .about-accent {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 140px; height: 140px;
+    border: 1px solid var(--line);
+    z-index: -1;
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: 32px; left: -24px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 20px 24px;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .about-badge strong {
+    display: block;
+    font-size: 2.4rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .about-text h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+
+  .about-text h2 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--grey);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 6px;
+  }
+
+  /* ─── LOCATION ─── */
+  .location {
+    padding: 100px 48px;
+    border-top: 1px solid var(--line);
+    background: var(--smoke);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .location-address {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .addr-block {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .addr-icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .addr-title {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+
+  .addr-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+
+  .addr-note {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--grey);
+    margin-top: 4px;
+  }
+
+  .location-map {
+    background: var(--ash);
+    aspect-ratio: 4/3;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .location-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(100%) invert(90%) contrast(85%) brightness(0.5) sepia(20%);
+  }
+
+  .map-overlay-corner {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: 1px solid var(--line);
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    padding: 120px 48px;
+    text-align: center;
+    position: relative;
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .contact-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--display);
+    font-size: clamp(100px, 18vw, 260px);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(184,150,62,0.05);
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
+    letter-spacing: -0.04em;
+  }
+
+  .contact h2 {
+    position: relative;
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .contact h2 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .contact-sub {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--grey);
+    margin-bottom: 56px;
+    font-style: italic;
+  }
+
+  .contact-channels {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .channel-card {
+    background: var(--smoke);
+    border: 1px solid var(--line);
+    padding: 40px 48px;
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.2s, background 0.3s;
+    min-width: 220px;
+    text-align: center;
+  }
+
+  .channel-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    background: var(--ash);
+  }
+
+  .channel-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+    color: var(--gold);
+  }
+
+  .channel-label {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 8px;
+  }
+
+  .channel-value {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    color: var(--cream);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 48px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    font-family: var(--display);
+    font-size: 1rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-motto {
+    font-family: var(--serif);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--grey);
+    text-align: center;
+  }
+
+  .footer-motto em {
+    color: var(--gold-dim);
+    font-style: normal;
+  }
+
+  .footer-copy {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ash);
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+
+    .hero { padding: 0 24px 60px; }
+    .hero-years { display: none; }
+    .hero-giant-letter { font-size: 55vw; }
+
+    .specialities { padding: 70px 24px; }
+    .specialities-grid { grid-template-columns: 1fr 1fr; }
+
+    .about { padding: 70px 24px; grid-template-columns: 1fr; gap: 48px; }
+    .about-visual { max-width: 340px; margin: 0 auto; }
+
+    .location { padding: 70px 24px; }
+    .location-grid { grid-template-columns: 1fr; gap: 48px; }
+
+    .contact { padding: 80px 24px; }
+
+    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .specialities-grid { grid-template-columns: 1fr; }
+    .spec-card { padding: 36px 28px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; }
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Breno Alcântara</div>
+  <ul class="nav-links">
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#localizacao">Estúdio</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-giant-letter">B</div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Tatuador Profissional · Porto</p>
+    <h1 class="hero-name">
+      BRENO
+      <span>Alcântara</span>
+    </h1>
+    <p class="hero-tagline">
+      Da arte urbana à pele — <em>histórias que ficam para sempre.</em><br>
+      Realismo, Black &amp; Grey e Arte Personalizada de alto nível.
+    </p>
+    <div class="hero-cta-row">
+      <a href="https://wa.me/?text=Olá%20Breno%2C%20gostaria%20de%20fazer%20um%20orçamento" class="btn-primary" target="_blank" rel="noopener">Orçamento via WhatsApp</a>
+      <a href="#especialidades" class="btn-ghost">Ver Trabalho</a>
+    </div>
+  </div>
+
+  <div class="hero-years">
+    <div class="hero-years-num">20+</div>
+    <div class="hero-years-label">Anos de Experiência</div>
+  </div>
+</section>
+
+<div class="divider"><span class="divider-icon">✦</span></div>
+
+<!-- SPECIALITIES -->
+<section class="specialities" id="especialidades">
+  <p class="section-label reveal">Especialidades</p>
+  <div class="specialities-grid">
+    <div class="spec-card reveal">
+      <span class="spec-icon">🦁</span>
+      <h3 class="spec-name">Realismo</h3>
+      <p class="spec-desc">Retratos e composições com detalhe fotográfico. Cada traço captura a essência do que é real — na pele, para sempre.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🎨</span>
+      <h3 class="spec-name">Black &amp; Grey</h3>
+      <p class="spec-desc">O domínio das sombras e da luz em escala de cinzentos. Uma linguagem visual atemporal e de enorme sofisticação.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">⬡</span>
+      <h3 class="spec-name">Fechamentos</h3>
+      <p class="spec-desc">Coberturas e transformações de tatuagens existentes. Convertemos o passado em arte que você vai querer mostrar.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">✏️</span>
+      <h3 class="spec-name">Arte Personalizada</h3>
+      <p class="spec-desc">Cada peça nasce de uma história única. O design começa em você — e termina numa obra que só existe em si.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-visual reveal">
+    <div class="about-frame">
+      <div class="about-frame-inner">
+        <div class="about-frame-letter">B</div>
+        <div class="about-frame-sub">Breno Alcântara</div>
+      </div>
+    </div>
+    <div class="about-accent"></div>
+    <div class="about-badge">
+      <strong>20+</strong>
+      Anos a<br>tatuar histórias
+    </div>
+  </div>
+
+  <div class="about-text">
+    <p class="section-label reveal">Sobre o Artista</p>
+    <h2 class="reveal">Mais de duas décadas a <em>transformar histórias</em> em tatuagens únicas</h2>
+    <p class="reveal">Breno Alcântara é um dos tatuadores de referência no norte de Portugal, com mais de 20 anos de carreira dedicados a elevar a tatuagem ao estatuto de <strong>arte de luxo</strong>. Especialista em realismo e black &amp; grey, cada sessão é tratada com a precisão de um artista e a sensibilidade de um narrador.</p>
+    <p class="reveal">Com estúdio próprio em Vila Nova de Gaia, atende clientes nacionais e internacionais que procuram <strong>qualidade sem compromissos</strong> — da consulta inicial à peça finalizada.</p>
+    <div class="about-stats reveal">
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Anos de Carreira</div>
+      </div>
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Histórias Tatuadas</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Arte Original</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="localizacao">
+  <p class="section-label reveal">Estúdio</p>
+  <div class="location-grid">
+    <div class="location-address">
+      <div class="addr-block reveal">
+        <div class="addr-icon">📍</div>
+        <div>
+          <div class="addr-title">Morada</div>
+          <div class="addr-text">
+            Rua Raimundo de Carvalho, 46<br>
+            Vila Nova de Gaia, Porto
+          </div>
+          <div class="addr-note">Atrás do El Corte Inglés</div>
+        </div>
+      </div>
+
+      <div class="addr-block reveal">
+        <div class="addr-icon">🚗</div>
+        <div>
+          <div class="addr-title">Estacionamento</div>
+          <div class="addr-text">Parque privativo próprio</div>
+          <div class="addr-note">Sem preocupações — pode estacionar mesmo junto ao estúdio.</div>
+        </div>
+      </div>
+
+      <div class="addr-block reveal">
+        <div class="addr-icon">📅</div>
+        <div>
+          <div class="addr-title">Agenda</div>
+          <div class="addr-text">Agenda Aberta</div>
+          <div class="addr-note">Orçamentos e marcações via WhatsApp ou Instagram.</div>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:8px;">
+        <a href="https://www.google.com/maps/search/Rua+Raimundo+de+Carvalho+46+Vila+Nova+de+Gaia" 
+           target="_blank" rel="noopener" class="btn-ghost" style="display:inline-block;">
+          Ver no Google Maps
+        </a>
+      </div>
+    </div>
+
+    <div class="location-map reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.893520456!2d-8.616!3d41.133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRua+Raimundo+de+Carvalho+46+Vila+Nova+de+Gaia!5e0!3m2!1spt!2spt!4v1"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Localização do Estúdio Breno Alcântara">
+      </iframe>
+      <div class="map-overlay-corner"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="contact-bg-text">ARTE</div>
+  <p class="section-label reveal" style="justify-content:center;text-align:center;">Contacto</p>
+  <h2 class="reveal">Vamos criar algo <em>inesquecível</em></h2>
+  <p class="contact-sub reveal">A sua próxima tatuagem começa aqui.</p>
+
+  <div class="contact-channels">
+    <a href="https://wa.me/?text=Olá%20Breno%2C%20gostaria%20de%20fazer%20um%20orçamento" 
+       class="channel-card reveal" target="_blank" rel="noopener">
+      <span class="channel-icon">💬</span>
+      <div class="channel-label">WhatsApp</div>
+      <div class="channel-value">Orçamentos</div>
+    </a>
+
+    <a href="https://www.instagram.com/brenotattoo07/" 
+       class="channel-card reveal" target="_blank" rel="noopener">
+      <span class="channel-icon">📷</span>
+      <div class="channel-label">Instagram</div>
+      <div class="channel-value">@brenotattoo07</div>
+    </a>
+
+    <a href="https://www.google.com/maps/search/Rua+Raimundo+de+Carvalho+46+Vila+Nova+de+Gaia"
+       class="channel-card reveal" target="_blank" rel="noopener">
+      <span class="channel-icon">📍</span>
+      <div class="channel-label">Estúdio</div>
+      <div class="channel-value">Vila Nova de Gaia</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Breno Alcântara</div>
+  <div class="footer-motto">
+    Da arte urbana à pele — <em>Arte que fica. Histórias que marcam.</em>
+  </div>
+  <div class="footer-copy">© 2025 · Porto</div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        // Stagger siblings
+        const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+        const idx = siblings.indexOf(entry.target);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, idx * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
